@@ -1,0 +1,116 @@
+/* ==========================================================================
+   NEXORA — responsive.css
+   Breakpoints layer on top of style.css. Mobile nav *behavior* (the
+   drawer) lives in style.css next to .navbar since it's functional,
+   not just cosmetic — this file handles grid/layout reflow.
+
+   Phase 1 note: this covers enough breakpoints that nothing in the
+   home page breaks on a phone. A full audit across every page and
+   device size (including print/landscape edge cases) is Phase 5.
+   ========================================================================== */
+
+/* ---- Tablet / small laptop ---- */
+@media (max-width: 1024px) {
+  .category-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ---- Tablet portrait / large phone ---- */
+@media (max-width: 860px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero__subtext {
+    margin-inline: auto;
+  }
+
+  .hero__actions {
+    justify-content: center;
+  }
+
+  .hero__visual {
+    order: -1;
+    max-width: 320px;
+  }
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 640px) {
+  :root {
+    --space-9: 56px;
+    --space-8: 40px;
+  }
+
+  .container {
+    padding-inline: var(--space-4);
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .promo__inner {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .newsletter__form {
+    flex-direction: column;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: var(--space-2);
+    text-align: center;
+  }
+
+  .toast-container {
+    left: var(--space-4);
+    right: var(--space-4);
+  }
+
+  .toast {
+    width: 100%;
+  }
+}
+
+/* ---- Small mobile ---- */
+@media (max-width: 400px) {
+  .product-card__name {
+    font-size: 0.9rem;
+  }
+
+  .product-card__body {
+    padding: var(--space-3);
+  }
+}

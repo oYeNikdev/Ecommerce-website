@@ -1,0 +1,83 @@
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---- Hero entrance ---- */
+.hero__text > * {
+  opacity: 0;
+  animation: fade-in-up 0.7s ease forwards;
+}
+
+.hero__text > *:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.hero__text > *:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.hero__text > *:nth-child(3) {
+  animation-delay: 0.25s;
+}
+
+.hero__visual {
+  opacity: 0;
+  animation: fade-in 1s ease 0.2s forwards, float 6s ease-in-out 1.2s infinite;
+}
+
+/* ---- Product & category card entrance ---- */
+.animate-in {
+  animation: fade-in-up 0.5s ease both;
+}
+
+/* ---- Toasts ---- */
+.toast {
+  animation: fade-in-up 0.25s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero__text > *,
+  .hero__visual {
+    opacity: 1;
+    transform: none;
+  }
+}

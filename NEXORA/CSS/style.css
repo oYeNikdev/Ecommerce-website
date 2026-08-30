@@ -1,0 +1,872 @@
+/* --------------------------------------------------------------------
+   1. DESIGN TOKENS
+   Every color, font, spacing and radius value used anywhere on the site
+   is defined once here. Change a value in :root and it updates
+   everywhere the variable is used — that's the entire point of a
+   design system: one source of truth instead of scattered hex codes.
+   -------------------------------------------------------------------- */
+:root {
+  /* Brand palette — deep charcoal + off-white, electric blue/violet accent */
+  --primary: #0a0b0d;         /* deep charcoal / near-black — page background */
+  --secondary: #f4f5f3;       /* off-white — primary text on dark surfaces */
+  --accent: #4361ee;          /* electric blue */
+  --accent-violet: #8b5cf6;   /* violet — paired with accent for the signature glow */
+  --text: #f4f5f3;
+  --text-muted: #9ca0a8;
+  --background: #0a0b0d;
+  --surface: #14161a;         /* cards, navbar, inputs */
+  --surface-hover: #1c1f24;   /* hovered/elevated surface */
+  --border: #24272d;          /* hairline borders */
+  --success: #22c55e;
+  --error: #ef4444;
+
+  /* Typography */
+  --font-display: 'Space Grotesk', sans-serif; /* headlines — carries brand personality */
+  --font-body: 'IBM Plex Sans', sans-serif;     /* body copy — built for legibility */
+  --font-mono: 'JetBrains Mono', monospace;     /* prices & specs — "spec sheet" signature */
+
+  /* Spacing scale (4px base unit, used for every margin/padding on the site) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* Radius — moderate, not pill-shaped; keeps the tech-premium feel */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+
+  /* Motion */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout */
+  --container-width: 1240px;
+  --navbar-height: 76px;
+
+  /* Elevation — subtle only, per brief */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-glow: 0 0 40px rgba(67, 97, 238, 0.25);
+}
+
+/* --------------------------------------------------------------------
+   2. RESET / BASE
+   A lean reset — just enough to get a consistent starting point across
+   browsers without fighting the cascade later.
+   -------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+/* --------------------------------------------------------------------
+   3. LAYOUT PRIMITIVES
+   -------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+}
+
+main section {
+  padding-block: var(--space-9);
+}
+
+/* --------------------------------------------------------------------
+   4. TYPOGRAPHY HELPERS
+   -------------------------------------------------------------------- */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-3);
+}
+
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.section-header h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+}
+
+.text-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--accent);
+  white-space: nowrap;
+  transition: opacity var(--transition-fast);
+}
+
+.text-link:hover {
+  opacity: 0.75;
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------
+   5. BUTTONS
+   Three variants covering every call-to-action on the site. Buttons are
+   real <button>/<a> elements everywhere (never a styled <div>) so they
+   stay keyboard- and screen-reader-accessible for free.
+   -------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: transform var(--transition-fast), background-color var(--transition-fast),
+    border-color var(--transition-fast), box-shadow var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--secondary);
+}
+
+.btn--primary:hover {
+  box-shadow: var(--shadow-glow);
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.btn--secondary:hover {
+  border-color: var(--text-muted);
+  background: var(--surface);
+}
+
+.btn--full {
+  width: 100%;
+}
+
+/* Icon-only buttons used in the navbar (search / wishlist / cart / account) */
+.icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  transition: background-color var(--transition-fast);
+}
+
+.icon-btn:hover {
+  background: var(--surface);
+}
+
+.icon-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-btn .badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 16px;
+  height: 16px;
+  padding-inline: 3px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--secondary);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  line-height: 16px;
+  text-align: center;
+}
+
+.icon-btn .badge:empty,
+.icon-btn .badge[data-count='0'] {
+  display: none;
+}
+
+/* --------------------------------------------------------------------
+   6. NAVBAR
+   position: sticky keeps the nav pinned without the layout/JS cost of
+   position: fixed (no need to add top-padding to <main> to compensate).
+   -------------------------------------------------------------------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--navbar-height);
+  display: flex;
+  align-items: center;
+  background: rgba(10, 11, 13, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+/* Added by app.js once the page scrolls, so the navbar only gains a
+   visible edge/shadow when it actually has content sliding under it. */
+.navbar.is-scrolled {
+  border-bottom-color: var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+
+.navbar__logo {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.navbar__link {
+  position: relative;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  padding-block: var(--space-2);
+  transition: color var(--transition-fast);
+}
+
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-fast);
+}
+
+.navbar__link:hover,
+.navbar__link.is-active {
+  color: var(--text);
+}
+
+.navbar__link.is-active::after {
+  transform: scaleX(1);
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.navbar__menu-toggle {
+  display: none;
+}
+
+/* --------------------------------------------------------------------
+   7. MOBILE NAV DRAWER
+   Below the mobile breakpoint the horizontal link list becomes a
+   slide-down panel toggled by app.js (adds/removes .is-open + updates
+   aria-expanded on the trigger button). Full responsive pass is Phase 5;
+   this keeps the nav usable on small screens starting now.
+   -------------------------------------------------------------------- */
+@media (max-width: 860px) {
+  .navbar__menu-toggle {
+    display: inline-flex;
+  }
+
+  .navbar__links {
+    position: absolute;
+    top: var(--navbar-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-base);
+  }
+
+  .navbar__links.is-open {
+    max-height: 320px;
+  }
+
+  .navbar__link {
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .navbar__link::after {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------
+   8. HERO
+   -------------------------------------------------------------------- */
+.hero {
+  padding-block: var(--space-9);
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: var(--space-7);
+}
+
+.hero__headline {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  margin-bottom: var(--space-5);
+}
+
+.hero__headline em {
+  font-style: normal;
+  background: linear-gradient(90deg, var(--accent), var(--accent-violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero__subtext {
+  max-width: 46ch;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-bottom: var(--space-6);
+}
+
+.hero__actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.hero__visual {
+  width: 100%;
+  max-width: 480px;
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------
+   9. CATEGORY CARDS
+   -------------------------------------------------------------------- */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-4);
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--accent);
+  border-radius: var(--radius-md);
+  text-align: center;
+  transition: transform var(--transition-base), background-color var(--transition-base);
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  background: var(--surface-hover);
+}
+
+.category-card__icon {
+  width: 56px;
+  height: 56px;
+  padding: var(--space-3);
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(67, 97, 238, 0.18), transparent 70%);
+}
+
+.category-card__label {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------
+   10. PRODUCT CARDS
+   Ratings use plain unicode stars rather than an icon library or extra
+   image requests — a common, lightweight pattern for star ratings.
+   -------------------------------------------------------------------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color var(--transition-base), transform var(--transition-base);
+}
+
+.product-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.product-card__media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(139, 92, 246, 0.18), transparent 55%),
+    radial-gradient(circle at 70% 80%, rgba(67, 97, 238, 0.18), transparent 55%),
+    var(--surface-hover);
+}
+
+.product-card__media img {
+  width: 44%;
+  opacity: 0.92;
+}
+
+.product-card__discount {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--background);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+}
+
+.product-card__wishlist {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(10, 11, 13, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.product-card__wishlist svg {
+  width: 17px;
+  height: 17px;
+  stroke: var(--text);
+  transition: stroke var(--transition-fast), fill var(--transition-fast);
+}
+
+.product-card__wishlist.is-active svg {
+  stroke: var(--accent);
+  fill: var(--accent);
+}
+
+.product-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  flex: 1;
+}
+
+.product-card__category {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.product-card__name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.product-card__rating {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.product-card__stars {
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+.product-card__price-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin-top: auto;
+  font-family: var(--font-mono);
+}
+
+.product-card__price {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.product-card__old-price {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+.product-card__add {
+  margin-top: var(--space-3);
+}
+
+/* --------------------------------------------------------------------
+   11. PROMO BANNER
+   -------------------------------------------------------------------- */
+.promo {
+  padding-block: 0 var(--space-9);
+}
+
+.promo__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+  padding: var(--space-8) var(--space-7);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(circle at 85% 20%, rgba(139, 92, 246, 0.25), transparent 55%),
+    radial-gradient(circle at 10% 90%, rgba(67, 97, 238, 0.2), transparent 50%),
+    var(--surface);
+}
+
+.promo__text h2 {
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  margin-bottom: var(--space-3);
+}
+
+.promo__text p {
+  color: var(--text-muted);
+  max-width: 42ch;
+}
+
+/* --------------------------------------------------------------------
+   12. WHY NEXORA
+   -------------------------------------------------------------------- */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+
+.benefit-card {
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.benefit-card__icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: var(--space-4);
+  color: var(--accent);
+}
+
+.benefit-card h3 {
+  font-size: 1rem;
+  margin-bottom: var(--space-2);
+}
+
+.benefit-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------
+   13. NEWSLETTER
+   -------------------------------------------------------------------- */
+.newsletter__inner {
+  text-align: center;
+  max-width: 560px;
+  margin-inline: auto;
+}
+
+.newsletter__inner h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin-bottom: var(--space-3);
+}
+
+.newsletter__inner p {
+  color: var(--text-muted);
+  margin-bottom: var(--space-6);
+}
+
+.newsletter__form {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.newsletter__form input {
+  flex: 1;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.newsletter__form input::placeholder {
+  color: var(--text-muted);
+}
+
+.newsletter__form input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------
+   14. FOOTER
+   -------------------------------------------------------------------- */
+.footer {
+  border-top: 1px solid var(--border);
+  padding-block: var(--space-8) var(--space-6);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: var(--space-6);
+  margin-bottom: var(--space-7);
+}
+
+.footer__brand {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+}
+
+.footer__col h4 {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-4);
+}
+
+.footer__col ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.footer__col a {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+}
+
+.footer__col a:hover {
+  color: var(--text);
+}
+
+.footer__social {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------
+   15. TOAST NOTIFICATIONS
+   A small, self-clearing message queue used for feedback like "Added
+   to cart". aria-live="polite" on the container (see index.html) lets
+   screen readers announce new toasts without stealing focus.
+   -------------------------------------------------------------------- */
+.toast-container {
+  position: fixed;
+  bottom: var(--space-5);
+  right: var(--space-5);
+  z-index: 400;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  box-shadow: var(--shadow-md);
+  font-size: 0.9rem;
+}
+
+.toast.toast--success {
+  border-left-color: var(--success);
+}
+
+.toast.toast--error {
+  border-left-color: var(--error);
+}
+
+/* --------------------------------------------------------------------
+   16. ACCESSIBILITY HELPERS
+   -------------------------------------------------------------------- */
+
+/* Keeps an element available to screen readers while removing it from
+   the visual layout — used for form labels that are redundant for
+   sighted users (a placeholder already shows) but still required for
+   an accessible name. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: var(--space-4);
+  z-index: 500;
+  padding: var(--space-3) var(--space-5);
+  background: var(--accent);
+  color: var(--secondary);
+  border-radius: var(--radius-sm);
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+/* A single, consistent focus style used everywhere instead of relying
+   on (inconsistent, sometimes invisible) browser defaults. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}

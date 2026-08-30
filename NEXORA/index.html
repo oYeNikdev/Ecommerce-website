@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXORA — Discover Better. Live Smarter.</title>
+  <meta name="description" content="NEXORA is a premium tech and lifestyle store for smart gadgets, audio, desk setups, and productivity gear designed to fit your life." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner container">
+      <a href="index.html" class="navbar__logo">NEXORA</a>
+
+      <nav class="navbar__links" id="navLinks" aria-label="Primary">
+        <a href="index.html" class="navbar__link is-active">Home</a>
+        <a href="shop.html" class="navbar__link">Shop</a>
+        <a href="categories.html" class="navbar__link">Categories</a>
+        <a href="about.html" class="navbar__link">About</a>
+      </nav>
+
+      <div class="navbar__actions">
+        <a href="search.html" class="icon-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="11" cy="11" r="7" />
+            <path d="M21 21l-4.3-4.3" />
+          </svg>
+        </a>
+        <a href="wishlist.html" class="icon-btn" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 21s-7.5-4.6-10-9.1C.5 8.4 2.3 5 5.8 5c2 0 3.3 1 4.2 2.3.5.7.7 1 2 1s1.5-.3 2-1C15 6 16.3 5 18.2 5 21.7 5 23.5 8.4 22 11.9 19.5 16.4 12 21 12 21z" />
+          </svg>
+          <span class="badge" id="wishlistCount" data-count="0">0</span>
+        </a>
+        <a href="cart.html" class="icon-btn" aria-label="Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 6h15l-1.5 9h-12z" />
+            <path d="M6 6L4.5 3H2" />
+            <circle cx="9.5" cy="19.5" r="1.5" />
+            <circle cx="17.5" cy="19.5" r="1.5" />
+          </svg>
+          <span class="badge" id="cartCount" data-count="0">0</span>
+        </a>
+        <a href="#" class="icon-btn" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 20c1.5-4 5-6 8-6s6.5 2 8 6" />
+          </svg>
+        </a>
+        <button class="icon-btn navbar__menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__text">
+          <span class="eyebrow">Rated 4.7/5 across 12,000+ orders</span>
+          <h1 class="hero__headline">Technology that <em>fits your life</em> — not the other way around.</h1>
+          <p class="hero__subtext">NEXORA curates smart gadgets, audio, and desk gear that are engineered well and designed to disappear into your day. No clutter. No gimmicks.</p>
+          <div class="hero__actions">
+            <a href="shop.html" class="btn btn--primary">Shop Collection</a>
+            <a href="#trending" class="btn btn--secondary">Explore Products</a>
+          </div>
+        </div>
+        <img class="hero__visual" src="assets/images/hero-visual.svg" alt="Abstract illustration of a NEXORA smart device surrounded by connected orbit rings" />
+      </div>
+    </section>
+
+    <!-- ============ FEATURED CATEGORIES ============ -->
+    <section class="categories">
+      <div class="container">
+        <div class="section-header">
+          <h2>Shop by Category</h2>
+        </div>
+        <div class="category-grid" id="categoryGrid">
+          <!-- Rendered by app.js from CATEGORIES in data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TRENDING PRODUCTS ============ -->
+    <section class="trending" id="trending">
+      <div class="container">
+        <div class="section-header">
+          <h2>Trending Now</h2>
+          <a href="shop.html" class="text-link">View all products →</a>
+        </div>
+        <div class="product-grid" id="trendingGrid">
+          <!-- Rendered by app.js from PRODUCTS in data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROMO BANNER ============ -->
+    <section class="promo">
+      <div class="container">
+        <div class="promo__inner">
+          <div class="promo__text">
+            <h2>Upgrade Your Setup</h2>
+            <p>Monitor arms, keyboards, and lighting that turn a desk into a workspace you actually want to sit at.</p>
+          </div>
+          <a href="shop.html?category=desk-setup" class="btn btn--primary">Shop Desk Setup</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHY NEXORA ============ -->
+    <section class="why-nexora">
+      <div class="container">
+        <div class="section-header">
+          <h2>Why NEXORA</h2>
+        </div>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <svg class="benefit-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 13h11l4 4h3v-4l-3-5h-4V6H3z" />
+              <circle cx="7.5" cy="18.5" r="1.8" />
+              <circle cx="17.5" cy="18.5" r="1.8" />
+            </svg>
+            <h3>Fast Delivery</h3>
+            <p>Dispatched within 24 hours, tracked door to door.</p>
+          </div>
+          <div class="benefit-card">
+            <svg class="benefit-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z" />
+              <path d="M9 12l2 2 4-4" />
+            </svg>
+            <h3>Secure Checkout</h3>
+            <p>Encrypted payments with fraud protection built in.</p>
+          </div>
+          <div class="benefit-card">
+            <svg class="benefit-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l2.6 5.6L21 8.3l-4.5 4.2L17.6 19 12 15.8 6.4 19l1.1-6.5L3 8.3l6.4-.7z" />
+            </svg>
+            <h3>Premium Products</h3>
+            <p>Every item is tested and spec-checked before it's listed.</p>
+          </div>
+          <div class="benefit-card">
+            <svg class="benefit-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4v6h6" />
+              <path d="M20 20v-6h-6" />
+              <path d="M5.5 9a7 7 0 0 1 12.5-2.5M18.5 15a7 7 0 0 1-12.5 2.5" />
+            </svg>
+            <h3>Easy Returns</h3>
+            <p>30-day no-questions-asked return window.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NEWSLETTER ============ -->
+    <section class="newsletter">
+      <div class="container newsletter__inner">
+        <h2>Get NEXORA drops first</h2>
+        <p>New products, restocks, and member-only prices — a couple of emails a month, nothing more.</p>
+        <form class="newsletter__form" id="newsletterForm" novalidate>
+          <label class="visually-hidden" for="newsletterEmail">Email address</label>
+          <input type="email" id="newsletterEmail" name="email" placeholder="you@email.com" required />
+          <button type="submit" class="btn btn--primary">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__col">
+          <div class="footer__brand">NEXORA</div>
+          <p class="text-muted">Discover Better. Live Smarter.<br />Smart gadgets, audio, and desk gear built for a calmer, better-equipped day.</p>
+          <div class="footer__social">
+            <a href="#" class="icon-btn" aria-label="NEXORA on Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.2" cy="6.8" r="1" /></svg>
+            </a>
+            <a href="#" class="icon-btn" aria-label="NEXORA on X">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4l16 16M20 4L4 20" /></svg>
+            </a>
+            <a href="#" class="icon-btn" aria-label="NEXORA on YouTube">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="3" /><path d="M10.5 9.5l5 2.5-5 2.5z" /></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer__col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="shop.html">All Products</a></li>
+            <li><a href="shop.html?category=smart-tech">Smart Tech</a></li>
+            <li><a href="shop.html?category=audio">Audio</a></li>
+            <li><a href="shop.html?category=desk-setup">Desk Setup</a></li>
+            <li><a href="shop.html?category=accessories">Accessories</a></li>
+            <li><a href="shop.html?category=productivity">Productivity</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
+            <li><a href="cart.html">Cart</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4>Customer Support</h4>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="mailto:support@nexora.example">support@nexora.example</a></li>
+            <li><span class="text-muted">Mon–Sat, 10am–7pm IST</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>© 2026 NEXORA. All rights reserved.</span>
+        <span>Discover Better. Live Smarter.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

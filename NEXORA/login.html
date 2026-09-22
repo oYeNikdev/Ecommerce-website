@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | NEXORA</title>
+  <script>
+    document.documentElement.dataset.theme = localStorage.getItem("theme") ||
+      (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/login.css">
+  <script src="js/login.js" defer></script>
+</head>
+<body>
+  <aside class="brand" aria-hidden="true">
+    <svg class="rings" viewBox="0 0 400 400">
+      <circle cx="200" cy="200" r="60" />
+      <circle cx="200" cy="200" r="110" />
+      <circle cx="200" cy="200" r="160" />
+      <circle cx="200" cy="200" r="200" />
+    </svg>
+    <p class="brand-line">Everything you were working on, right where you left it.</p>
+  </aside>
+
+  <div class="form-side">
+    <button type="button" id="theme-toggle" aria-label="Switch between light and dark mode">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 3v18a9 9 0 0 0 0-18z" fill="currentColor" /></svg>
+    </button>
+
+    <main id="main-holder">
+      <a class="back-link" href="index.html">Back to NEXORA</a>
+      <div class="logo">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="currentColor" /><path d="M10 16.5l4 4 8-9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        <span>NEXORA</span>
+      </div>
+
+      <div>
+        <h1 id="login-header">Welcome back</h1>
+        <p class="sub">Sign in to continue to your account.</p>
+      </div>
+
+      <p id="login-error-msg" role="alert"></p>
+
+      <form id="login-form" novalidate>
+        <div class="field">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 4-6 8-6s8 2 8 6" /></svg>
+          <input type="text" name="username" id="username" class="login-form-field" placeholder=" " autocomplete="username" autofocus>
+          <label for="username">Username</label>
+        </div>
+
+        <div class="field">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
+          <input type="password" name="password" id="password" class="login-form-field" placeholder=" " autocomplete="current-password">
+          <label for="password">Password</label>
+          <button type="button" id="toggle-password" aria-label="Show password" aria-pressed="false">Show</button>
+        </div>
+
+        <p id="caps-warning" hidden>Caps Lock is on.</p>
+        <div class="row">
+          <label class="remember"><input type="checkbox" id="remember-me"> Remember me</label>
+          <a href="#" id="forgot-link">Forgot password?</a>
+        </div>
+
+        <button type="submit" id="login-form-submit">
+          <span class="spinner" aria-hidden="true"></span>
+          <span id="btn-text">Login</span>
+        </button>
+      </form>
+    </main>
+  </div>
+</body>
+</html>
